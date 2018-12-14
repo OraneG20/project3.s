@@ -33,3 +33,10 @@ space_traversal:                        # this label skips the spaces in the str
         addi $t4, $t4, 1                # incrementing pointer
         addi $t7, $t7, 1                # incrementing counter
         beq $s0, 32, space_traversal    # loop and move forward if space detected
+        beq $s0, 10, empty_error        # branches to Empty_error label if new line found
+        beq $s0, $0, empty_error        # If a character is next, it will move on to next label automatically
+
+
+char_traversal:                         #  skips over the char until a space, new line or nothing is detected 
+        lb $s0, 0($t4)			# load next byte
+        addi $t4, $t4, 1		# move the ptr foward
