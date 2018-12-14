@@ -74,3 +74,8 @@ addi $t4, $t4, -1                       # re-aligning the pointer
 length_checker:                         # iterate over the valid set of char and ensure it is not over the limit of 4
         lb $s0, ($t4)                   # and then it would give error message
         addi $t4, $t4, 1                # otherwise the input's length is valid
+        addi $t7, $t7, 1
+        beq $s0, 10, return_to_start_of_string          # Checking for the end of the sequence of letters
+        beq $s0, 0, return_to_start_of_string			
+        beq $s0, 32, return_to_start_of_string
+        beq $t7, 5, invalidLength      		        # branches to invalidLength error message
