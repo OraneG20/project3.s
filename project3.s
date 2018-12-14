@@ -16,8 +16,14 @@ main:
         add $t7, $0, 0 		# Initializing registers
         addi $s1, $0, 0		# Initializing registers
 
-                                       # input check
+                                        # input check
         la $t4, user_input              # set pointer
         lb $s0, 0($t4)                  # load first element of string 
         beq $s0, 10, empty_error        # new line check
-        beq $s0, 0, empty_error	# empty byte check
+        beq $s0, 0, empty_error	        # empty byte check
+
+        addi $s5, $0, 35        # Set Base number
+        addi $t5, $0, 0		# Initializing registers
+        addi $s3, $0, 1         # Initialize register as 1 
+        addi $t6, $0, 0		# Initializing registers
+        addi $t9, $0, 0		# Initializing registers
