@@ -15,3 +15,9 @@ main:
         add $s0, $0, 0          # Initializing registers
         add $t7, $0, 0 		# Initializing registers
         addi $s1, $0, 0		# Initializing registers
+
+                                       # input check
+        la $t4, user_input              # set pointer
+        lb $s0, 0($t4)                  # load first element of string 
+        beq $s0, 10, empty_error        # new line check
+        beq $s0, 0, empty_error	# empty byte check
