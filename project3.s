@@ -93,3 +93,10 @@ return_to_start_of_string:              # reset ptr, correct string len, load 1s
 get_max_exponent:
         beq $s4, 0, conclusion          # Determing the highest power
         mult $s3, $s5                   # Multiplying to the highest power
+        mflo $s3                        # until the counter = 0
+        sub $s4, $s4, 1                 # decrement highest pwr
+        j get_max_exponent		# loop/jump back to the label 
+
+
+conclusion:				# Concluding with the conversion, additions & printing the decimal answer
+        jal conversion			# jump & link to next label (also sets the return address in the background)
