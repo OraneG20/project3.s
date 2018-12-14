@@ -180,6 +180,9 @@ error_precedence:
         bgt $t9, 3, invalidLength      # checks if too long    
         j invalidBase                  # defaults to Invalid base if not too long
 
+      jr $ra
+
+
 
         li $v0,10               # ends program
 
