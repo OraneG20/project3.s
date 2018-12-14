@@ -166,6 +166,13 @@ invalidBase:
         la $a0, wrong_base      # loads string
         li $v0, 4               # Specifies print string system call
         syscall			# OS is called to execute
+        syscall			# OS is called to execute
+
+empty_error:
+        la $a0, input_empty     # loads string
+        li $v0, 4               # Specifies print string system call
+        syscall			# OS is called to execute
+
 
         li $v0,10               # ends program
 
