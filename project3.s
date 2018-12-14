@@ -9,3 +9,9 @@ main:
 
         li $v0, 8
         la $a0, user_input
+        li $a1, 9000
+        syscall
+
+        add $s0, $0, 0          # Initializing registers
+        add $t7, $0, 0 		# Initializing registers
+        addi $s1, $0, 0		# Initializing registers
