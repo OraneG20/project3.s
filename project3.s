@@ -117,4 +117,9 @@ conversion:
 
         blt $s0, 48, invalidBase       # checks if character is before 0 in ASCII chart
         blt $s0, 58, Number                     # checks if character is between 48 and 57 inclusive
+        blt $s0, 65, invalidBase       # checks if character is between 58 and 64 inclusive
+        blt $s0, 90, Upper_Case                 # checks if character is between 65 and 89 inclusive
+        blt $s0, 97, invalidBase       # checks if character is between 76 and 96 inclusive
+        blt $s0, 122, Lower_Case                # checks if character is between 97 and 121 inclusive
+        blt $s0, 128, invalidBase      # checks if character is between 118 and 127 inclusive
 
