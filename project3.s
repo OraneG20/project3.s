@@ -58,3 +58,10 @@ char_space_traversal:                   # At this point, we are checking if we a
 
 
 reset:					# the following below goes to the very beginning of the input
+       sub $t4, $t4, $t7                # restart pointer in character array
+        la $t7, 0                       # restart counter
+
+
+skip_leading_spaces:
+        lb $s0, 0($t4)                  # Skipping the spaces at the begin of the input (if any)
+        addi $t4, $t4, 1                # to get to the first char in the string
