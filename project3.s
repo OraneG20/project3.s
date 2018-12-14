@@ -154,4 +154,11 @@ rewinding_accumulation:
 
 # Error Branches
 
+invalidLength:
+        la $a0, input_too_long		#loads the pre-declared string for their error message
+        li $v0, 4		# calls the print string system call
+        syscall			# OS is called to execute
+
+        li $v0, 10		# ends program
+        syscall			# OS is called to execute
 
