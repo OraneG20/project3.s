@@ -45,3 +45,9 @@ char_traversal:                         #  skips over the char until a space, ne
         beq $s0, 10, reset    # If we find a new line or anything branch to return to start
         beq $s0, 0, reset     
         bne $s0, 32, char_traversal    # If it is NOT a space is found, then it  loops
+
+char_space_traversal:                   # At this point, we are checking if we are going to find only space
+        lb $s0, 0($t4)                  # or another set of characters.
+        addi $t4, $t4, 1                # move the ptr foward
+        addi $t7, $t7, 1                # move the ptr counter
+        addi $t9, $t9, 1		# move invalidLength counter forward by 1
