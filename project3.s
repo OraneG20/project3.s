@@ -63,5 +63,14 @@ reset:					# the following below goes to the very beginning of the input
 
 
 skip_leading_spaces:
-        lb $s0, 0($t4)                  # Skipping the spaces at the begin of the input (if any)
-        addi $t4, $t4, 1                # to get to the first char in the string
+        lb $s0, 0($t4)                      # Skipping the spaces at the begin of the input (if any)
+        addi $t4, $t4, 1                    # to get to the first char in the string
+        beq $s0, 32, skip_leading_spaces    # this line stops iteratinng the string when it detects a letter
+
+
+addi $t4, $t4, -1                       # re-aligning the pointer 
+
+
+length_checker:                         # iterate over the valid set of char and ensure it is not over the limit of 4
+        lb $s0, ($t4)                   # and then it would give error message
+        addi $t4, $t4, 1                # otherwise the input's length is valid
