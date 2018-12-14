@@ -126,6 +126,13 @@ conversion:
        Upper_Case:
                         addi $s0, $s0, -55                      # subtraction is done like this to the ASCII to get the value of the char
                         j multiply     
-        Lower_Case:
+       Lower_Case:
                         addi $s0, $s0, -87                      # same is done for lower case but not for numbers
+                        j multiply
+        Number:
+                        addi $s0, $s0, -48
+                        j multiply
+
+        multiply:
+
 
