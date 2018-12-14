@@ -147,5 +147,11 @@ conversion:
 
 rewinding_accumulation:
         li $v0, 0       
+        lw $ra, 0($sp)                          # reload so we can return them
+        lw $s0, 4($sp)                          
+        addi $sp, $sp, 8                        # freeing up $sp, deallocating memory
+        jr $ra
+
+# Error Branches
 
 
