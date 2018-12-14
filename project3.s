@@ -51,3 +51,10 @@ char_space_traversal:                   # At this point, we are checking if we a
         addi $t4, $t4, 1                # move the ptr foward
         addi $t7, $t7, 1                # move the ptr counter
         addi $t9, $t9, 1		# move invalidLength counter forward by 1
+        beq $s0, 10, reset    		# If string is finished branch to return to start
+        beq $s0, 0, reset		
+        bne $s0, 32, error_precedence   # will check for invalid length or default to invalid base.
+        j char_space_traversal          # loops until it branches to one of the above mentioned labels
+
+
+reset:					# the following below goes to the very beginning of the input
