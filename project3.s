@@ -123,3 +123,9 @@ conversion:
         blt $s0, 122, Lower_Case                # checks if character is between 97 and 121 inclusive
         blt $s0, 128, invalidBase      # checks if character is between 118 and 127 inclusive
 
+       Upper_Case:
+                        addi $s0, $s0, -55                      # subtraction is done like this to the ASCII to get the value of the char
+                        j multiply     
+        Lower_Case:
+                        addi $s0, $s0, -87                      # same is done for lower case but not for numbers
+
