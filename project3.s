@@ -172,6 +172,13 @@ empty_error:
         la $a0, input_empty     # loads string
         li $v0, 4               # Specifies print string system call
         syscall			# OS is called to execute
+        
+        li $v0,10               # ends program
+        syscall			# OS is called to execute
+
+error_precedence:    
+        bgt $t9, 3, invalidLength      # checks if too long    
+        j invalidBase                  # defaults to Invalid base if not too long
 
 
         li $v0,10               # ends program
