@@ -85,3 +85,11 @@ return_to_start_of_string:              # reset ptr, correct string len, load 1s
         sub $t4, $t4, $t7		# resetting the pointer to the start of the valid set of char	
         sub $t7, $t7, $s3               # this line brings the counter for the length to its correct place
         lb $s0, 0($t4)                  # load first byte
+        sub $s4, $t7, $s3               # decremented and set the highest power for this particular length of valid string
+
+
+        move $s6, $t7                   # place length of input in an s register so it doesn't get changed after calling a subprogram
+
+get_max_exponent:
+        beq $s4, 0, conclusion          # Determing the highest power
+        mult $s3, $s5                   # Multiplying to the highest power
