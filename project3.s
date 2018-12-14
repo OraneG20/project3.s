@@ -134,5 +134,12 @@ conversion:
                         j multiply
 
         multiply:
+                        mul $s0, $s0, $s3               # value of letter times corresponding base^y
+                        div $s3, $s3, 35                # decreasingthe exponent of the register holding the highest power
+                        jal conversion
+
+        add $v0, $s0, $v0                       # adding up the rest of the calculation for the input
+
+        lw $ra, 0($sp)                          # reload so we can return them
 
 
