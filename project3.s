@@ -141,5 +141,11 @@ conversion:
         add $v0, $s0, $v0                       # adding up the rest of the calculation for the input
 
         lw $ra, 0($sp)                          # reload so we can return them
+        lw, $s0, 4($sp)                 
+        addi $sp, $sp, 8                        # freeing up $sp, deallocating memory
+        jr $ra                                  # jump return
+
+rewinding_accumulation:
+        li $v0, 0       
 
 
