@@ -27,3 +27,9 @@ main:
         addi $s3, $0, 1         # Initialize register as 1 
         addi $t6, $0, 0		# Initializing registers
         addi $t9, $0, 0		# Initializing registers
+        
+space_traversal:                        # this label skips the spaces in the string until we find the irst character
+        lb $s0, 0($t4)                  # load character pointer is at into the register t7
+        addi $t4, $t4, 1                # incrementing pointer
+        addi $t7, $t7, 1                # incrementing counter
+        beq $s0, 32, space_traversal    # loop and move forward if space detected
