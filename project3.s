@@ -111,4 +111,10 @@ conversion:
         sw $ra, 0($sp)                  # store the return address
         sw $s0, 4($sp)                  # store the new 
         beq $s1, $s6, rewinding_accumulation           # base case for recursion
+        add $t4, $a0, $s1               # incremental loading of pointer, iterating across input
+        addi $s1, $s1, 1                # increment counter
+        lb $s0, 0($t4)
+
+        blt $s0, 48, invalidBase       # checks if character is before 0 in ASCII chart
+        blt $s0, 58, Number                     # checks if character is between 48 and 57 inclusive
 
