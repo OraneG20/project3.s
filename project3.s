@@ -161,4 +161,11 @@ invalidLength:
 
         li $v0, 10		# ends program
         syscall			# OS is called to execute
+ 
+invalidBase:
+        la $a0, wrong_base      # loads string
+        li $v0, 4               # Specifies print string system call
+        syscall			# OS is called to execute
+
+        li $v0,10               # ends program
 
