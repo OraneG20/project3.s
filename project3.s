@@ -100,3 +100,9 @@ get_max_exponent:
 
 conclusion:				# Concluding with the conversion, additions & printing the decimal answer
         jal conversion			# jump & link to next label (also sets the return address in the background)
+        move $a0, $v0                   # moves sum to a0
+        li $v0, 1                       # prints contents of a0
+        syscall				# OS is called to execute
+        li $v0, 10                      # Successfully ends program
+        syscall				# OS is called to execute
+
