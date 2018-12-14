@@ -40,3 +40,8 @@ space_traversal:                        # this label skips the spaces in the str
 char_traversal:                         #  skips over the char until a space, new line or nothing is detected 
         lb $s0, 0($t4)			# load next byte
         addi $t4, $t4, 1		# move the ptr foward
+        addi $t7, $t7, 1
+        addi $t9, $t9, 1
+        beq $s0, 10, reset    # If we find a new line or anything branch to return to start
+        beq $s0, 0, reset     
+        bne $s0, 32, char_traversal    # If it is NOT a space is found, then it  loops
