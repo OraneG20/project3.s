@@ -79,3 +79,9 @@ length_checker:                         # iterate over the valid set of char and
         beq $s0, 0, return_to_start_of_string			
         beq $s0, 32, return_to_start_of_string
         beq $t7, 5, invalidLength      		        # branches to invalidLength error message
+        j length_checker
+
+return_to_start_of_string:              # reset ptr, correct string len, load 1st byte & set highest pwr
+        sub $t4, $t4, $t7		# resetting the pointer to the start of the valid set of char	
+        sub $t7, $t7, $s3               # this line brings the counter for the length to its correct place
+        lb $s0, 0($t4)                  # load first byte
