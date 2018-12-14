@@ -106,3 +106,9 @@ conclusion:				# Concluding with the conversion, additions & printing the decima
         li $v0, 10                      # Successfully ends program
         syscall				# OS is called to execute
 
+conversion:
+        addi $sp, $sp, -8               # allocate memory
+        sw $ra, 0($sp)                  # store the return address
+        sw $s0, 4($sp)                  # store the new 
+        beq $s1, $s6, rewinding_accumulation           # base case for recursion
+
