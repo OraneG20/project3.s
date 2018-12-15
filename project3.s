@@ -99,7 +99,14 @@ get_max_exponent:
 
 
 conclusion:				# Concluding with the conversion, additions & printing the decimal answer
+	addi $sp, $sp, -12
+	sw $s6, 0($sp)			#pass the arr length
+	sw $s1, 4($sp)			#pass the counter
+	sw $a0, 8($sp)			#pass the arr addr
         jal conversion			# jump & link to next label (also sets the return address in the background)
+	lw $v0, 0($sp)
+	addi $sp, $sp, 4
+
         move $a0, $v0                   # moves sum to a0
         li $v0, 1                       # prints contents of a0
         syscall				# OS is called to execute
@@ -107,14 +114,15 @@ conclusion:				# Concluding with the conversion, additions & printing the decima
         syscall				# OS is called to execute
 
 conversion:
-        lw $s6, 0($sp)			#pass the arr length
+	lw $s6, 0($sp)			#pass the arr length
 	lw $s1, 4($sp)			#pass the counter
 	lw $a0, 8($sp)			#pass the arr addr
 	addi $sp, $sp, 12
+
         addi $sp, $sp, -8               # allocate memory
         sw $ra, 0($sp)                  # store the return address
         sw $s0, 4($sp)                  # store the new 
-        beq $s1, $s6, rewinding_accumulation           # base case for recursion
+        beq $s1, $s6, rewinding_accumulation           # base case for recursion  #s6 = length
         add $t4, $a0, $s1               # incremental loading of pointer, iterating across input
         addi $s1, $s1, 1                # increment counter
         lb $s0, 0($t4)
@@ -140,22 +148,24 @@ conversion:
         multiply:
                         mul $s0, $s0, $s3               # value of letter times corresponding base^y
                         div $s3, $s3, 35                # decreasingthe exponent of the register holding the highest power
-                        
 
-
-jal conversion
-
-        addi $sp, $sp, -12
+	addi $sp, $sp, -12
 	sw $s6, 0($sp)			#pass the arr length
 	sw $s1, 4($sp)			#pass the counter
 	sw $a0, 8($sp)			#pass the arr addr
+                        jal conversion
 
+	lw $v0, 0($sp)
+	addi $sp, $sp, 4
 
         add $v0, $s0, $v0                       # adding up the rest of the calculation for the input
 
         lw $ra, 0($sp)                          # reload so we can return them
         lw, $s0, 4($sp)                 
         addi $sp, $sp, 8                        # freeing up $sp, deallocating memory
+
+	addi $sp, $sp, -4
+	sw $v0, 0($sp)
         jr $ra                                  # jump return
 
 rewinding_accumulation:
@@ -163,6 +173,9 @@ rewinding_accumulation:
         lw $ra, 0($sp)                          # reload so we can return them
         lw $s0, 4($sp)                          
         addi $sp, $sp, 8                        # freeing up $sp, deallocating memory
+
+	addi $sp, $sp, -4
+	sw $v0, 0($sp)
         jr $ra
 
 # Error Branches
@@ -195,6 +208,4 @@ error_precedence:
 
       jr $ra
 
-
-
-        li $v0,10               # ends program      
+        li $v0,10               # ends program 
