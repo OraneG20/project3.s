@@ -136,7 +136,16 @@ conversion:
         multiply:
                         mul $s0, $s0, $s3               # value of letter times corresponding base^y
                         div $s3, $s3, 35                # decreasingthe exponent of the register holding the highest power
-                        jal conversion
+                        
+
+
+jal conversion
+
+        addi $sp, $sp, -12
+	sw $s6, 0($sp)			#pass the arr length
+	sw $s1, 4($sp)			#pass the counter
+	sw $a0, 8($sp)			#pass the arr addr
+
 
         add $v0, $s0, $v0                       # adding up the rest of the calculation for the input
 
@@ -184,5 +193,4 @@ error_precedence:
 
 
 
-        li $v0,10               # ends program
-
+        li $v0,10               # ends program      
