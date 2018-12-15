@@ -107,6 +107,10 @@ conclusion:				# Concluding with the conversion, additions & printing the decima
         syscall				# OS is called to execute
 
 conversion:
+        lw $s6, 0($sp)			#pass the arr length
+	lw $s1, 4($sp)			#pass the counter
+	lw $a0, 8($sp)			#pass the arr addr
+	addi $sp, $sp, 12
         addi $sp, $sp, -8               # allocate memory
         sw $ra, 0($sp)                  # store the return address
         sw $s0, 4($sp)                  # store the new 
